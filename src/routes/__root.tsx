@@ -81,16 +81,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "SkillBridge — Connecting Skills, People and Opportunities" },
+      {
+        name: "description",
+        content: "An inclusive professional community connecting skills, people and opportunities.",
+      },
+      { property: "og:title", content: "SkillBridge" },
+      { property: "og:description", content: "Connecting Skills, People and Opportunities." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750;800&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,

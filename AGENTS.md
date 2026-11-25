@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Keep shared public navigation and footer in a browser-safe site-shell component; each content route owns its metadata so pages remain independently discoverable.
+- Keep Stage 1 sample records in a shared typed module, explicitly labeled as demo; persistent actions must wait for authenticated Cloud-backed stages.
