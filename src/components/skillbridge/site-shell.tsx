@@ -10,14 +10,14 @@ const links = [
   { to: "/organizations" as const, label: "Organizations" },
   { to: "/about" as const, label: "About Us" },
 ];
-export function Brand() {
+export function Brand({ name = "Skill" }: { name?: string }) {
   return (
-    <Link to="/" className="brand-mark" aria-label="SkillBridge home">
+    <Link to="/" className="brand-mark" aria-label={`${name}Bridge home`}>
       <span className="brand-icon">
         <Network size={25} />
       </span>
       <span>
-        Skill<span className="text-primary">Bridge</span>
+        {name}<span className="text-primary">Bridge</span>
       </span>
     </Link>
   );
@@ -28,7 +28,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <>
       <header className="site-header">
         <div className="site-container flex h-full items-center justify-between gap-6">
-          <Brand />
+          <Brand name="Wrok" />
           <nav className="desktop-nav flex h-full items-center gap-6" aria-label="Main navigation">
             {links.map((link) => (
               <Link key={link.to} to={link.to} className="nav-link" activeOptions={{ exact: true }}>
