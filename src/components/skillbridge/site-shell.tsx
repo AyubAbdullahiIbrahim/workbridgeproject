@@ -1,5 +1,5 @@
-import { Link } from "@tanstack/react-router";
-import { useState, type ReactNode } from "react";
+import { Link, useLocation } from "@tanstack/react-router";
+import { useEffect, useState, type ReactNode } from "react";
 import { ArrowUpRight, ArrowRight, Menu, X, Network, Globe, HeartHandshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 const links = [
@@ -10,6 +10,30 @@ const links = [
   { to: "/organizations" as const, label: "Organizations" },
   { to: "/about" as const, label: "About Us" },
 ];
+const pageTitles: Record<string, string> = {
+  "/": "Home",
+  "/opportunities": "Find Opportunities",
+  "/network": "Professional Network",
+  "/mentorship": "Mentorship",
+  "/organizations": "Organizations",
+  "/about": "About Us",
+  "/contact": "Contact Us",
+  "/join": "Create Account",
+  "/login": "Login",
+  "/privacy": "Privacy Policy",
+  "/terms": "Terms of Service",
+};
+function usePageTitle() {
+  const { pathname } = useLocation();
+  const known = pageTitles[pathname];
+  if (known) return known;
+  const words = pathname.replace(/[-/]+/g, " ").trim();
+  if (!words) return "Home";
+  return words
+    .split(" ")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
 export function Brand({ name = "Skill" }: { name?: string }) {
   return (
     <Link to="/" className="brand-mark" aria-label={`${name}Bridge home`}>
@@ -24,11 +48,23 @@ export function Brand({ name = "Skill" }: { name?: string }) {
 }
 export function SiteShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+  const pageTitle = usePageTitle();
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 4);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
     <>
-      <header className="site-header">
+      <header className="site-header" data-scrolled={scrolled ? "true" : "false"}>
         <div className="site-container flex h-full items-center justify-between gap-6">
-          <Brand name="Wrok" />
+          <div className="flex min-w-0 items-center gap-3">
+            <Brand name="Wrok" />
+            <span className="page-title min-w-0 truncate">{pageTitle}</span>
+          </div>
           <nav className="desktop-nav flex h-full items-center gap-6" aria-label="Main navigation">
             {links.map((link) => (
               <Link key={link.to} to={link.to} className="nav-link" activeOptions={{ exact: true }}>
@@ -62,8 +98,17 @@ export function SiteShell({ children }: { children: ReactNode }) {
             className="absolute left-0 right-0 z-30 grid gap-1 border-b bg-background p-5 shadow-lg"
           >
             {links.map((link) => (
-              <Button asChild variant="ghost" className="justify-start" key={link.to}>
-                <Link to={link.to} onClick={() => setOpen(false)}>
+              <Button
+                asChild
+                variant="ghost"
+                className="mobile-nav-link justify-start"
+                key={link.to}
+              >
+                <Link
+                  to={link.to}
+                  onClick={() => setOpen(false)}
+                  aria-current={pathname === link.to ? "page" : undefined}
+                >
                   {link.label}
                 </Link>
               </Button>

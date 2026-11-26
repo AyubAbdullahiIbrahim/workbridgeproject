@@ -175,16 +175,35 @@
   margin-inline: auto;
 }
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   height: 88px;
   border-bottom: 1px solid var(--border);
   background: var(--background);
 }
+.site-header[data-scrolled="true"] {
+  box-shadow: 0 6px 18px oklch(0.312 0.081 257 / 0.08);
+}
 .brand-mark {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 10px;
   font-size: 25px;
   font-weight: 750;
+}
+.page-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  border-left: 1px solid var(--border);
+  padding-left: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .brand-icon {
   background: var(--brand);
@@ -207,6 +226,10 @@
 .nav-link[data-status="active"] {
   color: var(--brand);
   border-color: var(--primary);
+}
+.mobile-nav-link[aria-current="page"] {
+  color: var(--brand);
+  font-weight: 600;
 }
 .hero {
   position: relative;
