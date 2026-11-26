@@ -61,7 +61,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <>
       <header className="site-header" data-scrolled={scrolled ? "true" : "false"}>
         <div className="site-container flex h-full items-center justify-between gap-6">
-          <div className="flex min-w-0 items-center gap-3">
+          <div className="header-brand-col flex min-w-0 items-center gap-3">
             <Brand name="Wrok" />
             <span className="page-title min-w-0 truncate">{pageTitle}</span>
           </div>
@@ -72,17 +72,17 @@ export function SiteShell({ children }: { children: ReactNode }) {
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-3">
-            <Button asChild variant="ghost" className="hidden sm:inline-flex">
+          <div className="header-actions flex items-center gap-3">
+            <Button asChild variant="ghost" className="header-cta hidden sm:inline-flex">
               <Link to="/login">Login</Link>
             </Button>
-            <Button asChild className="hidden sm:inline-flex">
+            <Button asChild className="header-cta hidden sm:inline-flex">
               <Link to="/join">
                 Get Started <ArrowUpRight />
               </Link>
             </Button>
             <Button
-              className="lg:hidden"
+              className="nav-toggle"
               variant="ghost"
               size="icon"
               aria-label={open ? "Close navigation" : "Open navigation"}
