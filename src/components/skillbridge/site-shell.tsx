@@ -10,30 +10,7 @@ const links = [
   { to: "/organizations" as const, label: "Organizations" },
   { to: "/about" as const, label: "About Us" },
 ];
-const pageTitles: Record<string, string> = {
-  "/": "Home",
-  "/opportunities": "Find Opportunities",
-  "/network": "Professional Network",
-  "/mentorship": "Mentorship",
-  "/organizations": "Organizations",
-  "/about": "About Us",
-  "/contact": "Contact Us",
-  "/join": "Create Account",
-  "/login": "Login",
-  "/privacy": "Privacy Policy",
-  "/terms": "Terms of Service",
-};
-function usePageTitle() {
-  const { pathname } = useLocation();
-  const known = pageTitles[pathname];
-  if (known) return known;
-  const words = pathname.replace(/[-/]+/g, " ").trim();
-  if (!words) return "Home";
-  return words
-    .split(" ")
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
-}
+
 export function Brand({ name = "Skill" }: { name?: string }) {
   return (
     <Link to="/" className="brand-mark" aria-label={`${name}Bridge home`}>
@@ -50,7 +27,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
-  const pageTitle = usePageTitle();
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
@@ -66,7 +42,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div className="site-container flex h-full items-center justify-between gap-6">
           <div className="header-brand-col flex min-w-0 items-center gap-3">
             <Brand name="Wrok" />
-            <span className="page-title min-w-0 truncate">{pageTitle}</span>
           </div>
           <nav className="desktop-nav flex h-full items-center gap-6" aria-label="Main navigation">
             {links.map((link) => (

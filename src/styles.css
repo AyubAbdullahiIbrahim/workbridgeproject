@@ -193,18 +193,6 @@
   font-size: 25px;
   font-weight: 750;
 }
-.page-title {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-  border-left: 1px solid var(--border);
-  padding-left: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 .brand-icon {
   background: var(--brand);
   color: var(--primary);
@@ -421,9 +409,6 @@
   .brand-icon {
     width: 32px;
     height: 32px;
-  }
-  .page-title {
-    display: none;
   }
   .hero h1 {
     font-size: 46px;
