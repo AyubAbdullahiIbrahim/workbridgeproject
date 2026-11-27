@@ -52,6 +52,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
   const pageTitle = usePageTitle();
   useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+  useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 4);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -86,6 +89,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
               variant="ghost"
               size="icon"
               aria-label={open ? "Close navigation" : "Open navigation"}
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
               onClick={() => setOpen(!open)}
             >
               {open ? <X /> : <Menu />}
@@ -94,8 +99,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
         </div>
         {open && (
           <nav
+            id="mobile-navigation"
             aria-label="Mobile navigation"
-            className="absolute left-0 right-0 z-30 grid gap-1 border-b bg-background p-5 shadow-lg"
+            className="mobile-navigation absolute left-0 right-0 z-30 grid gap-1 border-b bg-background p-5 shadow-lg"
           >
             {links.map((link) => (
               <Button

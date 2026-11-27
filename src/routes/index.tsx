@@ -18,7 +18,7 @@ import {
   Handshake,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SiteShell, SectionHeading } from "@/components/skillbridge/site-shell";
+import { SectionHeading } from "@/components/skillbridge/site-shell";
 import { opportunities, mentors, pageMeta } from "@/components/skillbridge/data";
 import { OpportunityCard } from "@/components/skillbridge/opportunity-card";
 import hero from "@/assets/skillbridge-collaboration.png.asset.json";
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
 });
 function Index() {
   return (
-    <SiteShell>
+    <>
       <section className="hero">
         <img
           className="hero-image"
@@ -288,6 +288,6 @@ function Index() {
           </div>
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }

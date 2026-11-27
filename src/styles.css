@@ -446,7 +446,8 @@
   }
 }
 @media (min-width: 700px) {
-  .nav-toggle {
+  .nav-toggle,
+  .mobile-navigation {
     display: none;
   }
 }

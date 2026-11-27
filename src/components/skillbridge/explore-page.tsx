@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { Search, MapPin, ArrowRight, Users, Building2, HeartHandshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SiteShell } from "./site-shell";
 import { opportunities, mentors } from "./data";
 import { OpportunityCard } from "./opportunity-card";
 export function ExplorePage({
@@ -63,7 +62,7 @@ export function ExplorePage({
     },
   ].filter((o) => o.name.toLowerCase().includes(query.toLowerCase()));
   return (
-    <SiteShell>
+    <>
       <section className="border-b bg-muted py-14">
         <div className="site-container">
           <span className="eyebrow mb-4">CONNECTING SKILLS, PEOPLE AND OPPORTUNITIES</span>
@@ -238,7 +237,7 @@ export function ExplorePage({
           )}
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }
 export function InformationPage({
@@ -280,7 +279,7 @@ export function InformationPage({
   };
   const c = content[kind];
   return (
-    <SiteShell>
+    <>
       <section className="min-h-[560px] bg-muted py-20">
         <div className="site-container">
           <span className="eyebrow mb-5">{c.subtitle}</span>
@@ -326,6 +325,6 @@ export function InformationPage({
           </div>
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }

@@ -29,5 +29,5 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 
-- Keep shared public navigation and footer in a browser-safe site-shell component; each content route owns its metadata so pages remain independently discoverable.
+- Mount the browser-safe SiteShell only in the root layout around Outlet, never in page components, so navigation and footer persist exactly once; each content route owns its metadata for independent discoverability.
 - Keep Stage 1 sample records in a shared typed module, explicitly labeled as demo; persistent actions must wait for authenticated Cloud-backed stages.
