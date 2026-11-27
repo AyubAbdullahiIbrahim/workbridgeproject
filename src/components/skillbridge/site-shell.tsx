@@ -119,12 +119,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 </Link>
               </Button>
             ))}
-            <Button asChild variant="navy">
+            <Button asChild variant="navy" className="sm:hidden">
               <Link to="/join" onClick={() => setOpen(false)}>
                 Get Started
               </Link>
             </Button>
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="sm:hidden">
               <Link to="/login" onClick={() => setOpen(false)}>
                 Login
               </Link>
